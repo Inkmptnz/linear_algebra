@@ -1,19 +1,19 @@
 using LinearAlgebra
 using AbstractAlgebra
-
+using Polynomials
 # naive attempt - takes more space, is similar fast - eigvals takes longest
-# matrix_good_ev(dim, start, stop) = matrix_good_ev(dim, start:stop)
-# function matrix_good_ev(dim, possible_values)
-#     evs = zeros(dim)
-#     A = zeros(dim,dim)
+matrix_good_ev(dim, start, stop) = matrix_good_ev(dim, start:stop)
+function matrix_good_ev(dim, possible_values)
+    evs = zeros(dim)
+    A = zeros(dim,dim)
 
-#     evs[1] = 0.1 #ensures that while runs at least ones
-#     while !good_ev(evs)
-#         A = rand(possible_values,dim,dim)
-#         evs = eigvals(A)
-#     end
-#     return A
-# end
+    evs[1] = 0.1 #ensures that while runs at least ones
+    while !good_ev(evs)
+        A = rand(possible_values,dim,dim)
+        evs = eigvals(A)
+    end
+    return A
+end
 
 #optimized version
 
@@ -84,11 +84,45 @@ function number_good_matrices(matrices)
     return count
 end
 
-function char_poly(A) 
+function char_poly(A)
     B = matrix(ZZ, A);
     Zx, x = ZZ["x"]
     return charpoly(Zx,B)
 end
+
+# function format_char_pol(evs)
+#     if good_ev(evs)
+#         return [Polynomial([-ev,1], :λ) for ev ∈ evs]
+#     else
+#         good_evs = get_good_ev(evs)
+#         return vcat([Polynomial([-ev,1], :λ) for ev ∈ good_evs], [Polynomial([-ev,1], :λ) for ev in evs if ev ∉ good_evs])
+#     end
+# end
+
+# function get_good_ev(evs)
+#     if good_ev(evs)
+#         return evs
+#     else
+#         return [ev for ev in evs if good_ev(ev)]
+#     end
+# end
+
+orthonormal_base(V::Matrix{Int64}) = orthonormal_base(convert(Matrix{Float64}, V))
+function orthonormal_base(V::Matrix{Float64})
+    (n, k) = size(V)
+    U = zeros(n,k)
+    U[:,1] = V[:,1]/norm(V[:,1])
+    for i in 2:k
+        U[:,i] = V[:,i]
+        for j in 1:(i-1)
+            U[:,i] = U[:,i] - (transpose(U[:,j])*U[:,i]) * U[:,j];
+        end
+        U[:,i] = U[:,i] / norm(U[:,i])
+    end
+    U
+end
+
+
 # count = 100000
 # dim = 4
 # range = (0,1)
