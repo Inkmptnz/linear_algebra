@@ -90,6 +90,23 @@ function char_poly(A)
     return charpoly(Zx,B)
 end
 
+function print_char_ev(A)
+    println(char_poly(A))
+    println(eigvals(A))
+end
+
+function wolframAlpha_copy(A)
+    string = "{"
+    for i in 1:(size(A)[1])
+        string *= "{"
+        row = A[i,:]
+        for j in row[1:end-1]
+            string *= "$j,"
+        end
+        string *= "$(row[end])},"
+    end
+    println(string[1:(end-1)] * "}")
+end
 # function format_char_pol(evs)
 #     if good_ev(evs)
 #         return [Polynomial([-ev,1], :λ) for ev ∈ evs]
