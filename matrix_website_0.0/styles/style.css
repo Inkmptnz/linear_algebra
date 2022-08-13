@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* element selsectors */
+/* 
+colors
+name = Atom One Dark
+background = #282c34
+currentline = #0A99bbff
+currentcell = #00000000
+occurrence = #434957
+ctrlclick = #56b6c2
+sideareas = #21252b
+matched_p = #434957
+unmatched_p = #4Dff0000
+normal = ('#abb2bf', False, False)
+keyword = ('#c678dd', False, False)
+builtin = ('#56b6c2', False, False)
+definition = ('#61afef', False, False)
+comment = ('#5c6370', False, True)
+string = ('#98c379', False, False)
+number = ('#d19a66', False, False)
+instance = ('#e5c07b', False, True)
+*/
+body{
+    background-color:#181a1f;
+    color: #e4eeff;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    line-height: 2em;
+}
+
+header {
+    text-align: center;
+    size: 150px;
+}
+
+nav {
+    background-color: #0A99bbff;
+    margin-bottom: 30px;
+    overflow: hidden;
+    padding-left: 10%;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    color: #ffffff;
+    display: block;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+}
+
+nav li a:hover:not(.active) {
+    background-color: #434957;
+    color: white;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+footer {
+    background-color: #21252b;
+    margin-top: 100px;
+    padding: 5px;
+    text-align: center;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* class selectors */
+.underheader {
+    color: #e5c07b;
+}
+
+.matrix {
+    
+    table-layout: fixed;
+    width: 180px;
+    height: 180px;
+}
+/* @media rules */
