@@ -111,32 +111,3 @@ function whole_imag_ev(evs)
 end
 
 
-matrix_multiple_whole_ev!(dim,start,stop,equal_count) = matrix_whole_imag_ev!(dim, start:stop, equal_count)
-matrix_multiple_whole_ev!(mat::AbstractArray,start,stop,equal_count) = matrix_whole_imag_ev!(mat, start:stop, equal_count)
-
-function matrix_multiple_whole_ev!(dim, possible_values, equal_count)
-    mat = rand(dim, dim)
-    matrix_whole_imag_ev!(mat, possible_values, equal_count)
-end
-
-function matrix_multiple_whole_ev!(mat::AbstractArray, possible_values, equal_count)
-    evs = zeros(size(mat, 1))
-    evcache = similar(mat)
-    evs[1] = 0.1 # ensures that while runs at least ones
-    while !whole_equal_ev(evs, equal_count)
-        evs = random_try!(mat, evcache, possible_values)
-    end
-    convert(Matrix{Int64}, mat)
-end
-
-whole_equal_ev(::Vector{ComplexF64}, _) = false
-function whole_equal_ev(evs, equal_count)
-    c = collect(counter(evs))
-    if whole_ev(evs)
-        if equal_count == size(evs)[1]
-            return size(c)[1] == 1
-        end
-        return equal_count ∈ [c[i][2] for i in 1:size(c)[1]]
-    end
-    false
-end

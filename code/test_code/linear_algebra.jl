@@ -1,4 +1,4 @@
-using LinearAlgebra, AbstractAlgebra, Polynomials, CSV, DataFrames
+using LinearAlgebra, AbstractAlgebra, Polynomials
 
 include("create_matrices.jl")
 # uncomplete
@@ -86,12 +86,6 @@ function print_char_ev(A)
     wolframAlpha_copy(A)
     println(char_poly(A))
     println(eigvals(A))
-end
-
-function write_matrices(matrices)
-    for mat in matrices
-        CSV.write(raw"D:\documents\programmieren\linear_algebra\code\test.txt", DataFrame(mat, :auto), header = false)
-    end
 end
 
 function wolframAlpha_copy(A)
