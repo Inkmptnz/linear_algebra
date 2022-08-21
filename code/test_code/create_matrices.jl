@@ -99,6 +99,19 @@ function matrix_whole_imag_ev!(mat::AbstractArray, possible_values)
     convert(Matrix{Int64}, mat)
 end
 
+matrix_whole_imag_ev!(mat, possible_values) = matrix_good_ev!(mat, possible_values, whole_imag_ev)
+matrix_whole_ev!(mat, possible_values) = matrix_good_ev!(mat, possible_values, whole_ev)
+function matrix_good_ev!(mat::AbstractArray, possible_values, is_good::Function)
+    evs = zeros(size(mat, 1))
+    evcache = similar(mat)
+    evs[1] = 0.1 # ensures that while runs at least ones
+    while !is_good(evs)
+        evs = random_try!(mat, evcache, possible_values)
+    end
+    convert(Matrix{Int64}, mat)
+end
+
+
 whole_imag_ev(::Vector{Float64}) = false
 
 function whole_imag_ev(evs)

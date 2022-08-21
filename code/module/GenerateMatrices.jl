@@ -9,16 +9,18 @@ using DataStructures
 
 # gives Matrices with whole, non imaginary EVs
 
-matrix_whole_ev!(dim, start, stop) = matrix_whole_ev!(dim, start:stop)
+matrix_whole_ev(dim, possible_values, is_whole_ev)
 
-function matrix_whole_ev!(dim, possible_values)
+matrix_good_ev!(dim, start, stop) = matrix_good_ev!(dim, start:stop)
+
+function matrix_good_ev!(dim, possible_values, is_good_ev::Function)
     mat = rand(dim, dim)
-    matrix_whole_ev!(mat, possible_values)
+    matrix_good_ev!(mat, possible_values)
 end
 
-matrix_whole_ev!(mat::AbstractArray, start, stop) = matrix_whole_ev!(mat, start:stop)
+matrix_good_ev!(mat::AbstractArray, start, stop) = matrix_good_ev!(mat, start:stop)
 
-function matrix_whole_ev!(mat::AbstractArray, possible_values)
+function matrix_good_ev!(mat::AbstractArray, possible_values)
     evs = zeros(size(mat, 1))
     evcache = similar(mat)
     evs[1] = 0.1
