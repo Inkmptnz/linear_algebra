@@ -1,4 +1,3 @@
-module GenerateMatrices
 
 using LinearAlgebra 
 using AbstractAlgebra
@@ -9,7 +8,7 @@ using DataStructures
 
 # gives Matrices with whole, non imaginary EVs
 
-matrix_whole_ev(dim, possible_values, is_whole_ev)
+# matrix_whole_ev(dim, possible_values, is_whole_ev)
 
 matrix_good_ev!(dim, start, stop) = matrix_good_ev!(dim, start:stop)
 
