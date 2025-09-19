@@ -1,7 +1,8 @@
+import Pkg; Pkg.add.(["DataStructures", "LinearAlgebra", "Polynomials"]);
+
 using LinearAlgebra, AbstractAlgebra, Polynomials
 
 include("create_matrices.jl")
-# uncomplete
 
 function daily_math()
     dims = Dict(2 => -6:6, 3 => -4:4, 4 => -2:2, 5 => 0:2)
@@ -32,6 +33,7 @@ function print_math(matrices, with_i)#
             end
         end
     end
+
     for mat in matrices
         display(mat)
         while true
