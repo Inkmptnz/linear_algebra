@@ -1,4 +1,4 @@
-import Pkg; Pkg.add.(["DataStructures", "LinearAlgebra", "Polynomials"]);
+# import Pkg; Pkg.add.(["DataStructures", "LinearAlgebra", "Polynomials"]);
 
 using LinearAlgebra, AbstractAlgebra, Polynomials
 
